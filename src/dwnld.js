@@ -1,9 +1,4 @@
-import {
-  DEFAULT_MIME_TYPE,
-  DEFAULT_FILE_NAME,
-  BASE64_REGEX,
-  PARSE_PATH_FOR_FILENAME_REGEX
-} from './constants'
+import { DEFAULT_MIME_TYPE, DEFAULT_FILE_NAME, BASE64_REGEX, PARSE_PATH_FOR_FILENAME_REGEX } from './constants'
 import { printError, isURL, dataURLToBlob, setFileExtension } from './utils'
 
 function stopPropagationHandler(e) {
@@ -17,10 +12,7 @@ function stopPropagationHandler(e) {
  * @param {String} [mimeType]
  *
  */
-function download(
-  data,
-  { fileName = DEFAULT_FILE_NAME, mimeType = DEFAULT_MIME_TYPE } = {}
-) {
+function dwnld(data, { fileName = DEFAULT_FILE_NAME, mimeType = DEFAULT_MIME_TYPE } = {}) {
   try {
     // If URL was passed - first download it.
     // Then recursively call download again with response.
@@ -46,11 +38,7 @@ function download(
  * @param {String} [mimeType]
  */
 function downloadFromURL(url, { fileName, mimeType = DEFAULT_MIME_TYPE } = {}) {
-  const [
-    ,
-    fileNameFromPath,
-    extensionWithQueryParams
-  ] = PARSE_PATH_FOR_FILENAME_REGEX.exec(url)
+  const [, fileNameFromPath, extensionWithQueryParams] = PARSE_PATH_FOR_FILENAME_REGEX.exec(url)
 
   const extension = extensionWithQueryParams.split('?')[0]
 
@@ -77,10 +65,7 @@ function downloadFromURL(url, { fileName, mimeType = DEFAULT_MIME_TYPE } = {}) {
  *
  * @return {*}
  */
-function convertBase64ToBlob(
-  base64Path,
-  { fileName = DEFAULT_FILE_NAME } = {}
-) {
+function convertBase64ToBlob(base64Path, { fileName = DEFAULT_FILE_NAME } = {}) {
   const blob = dataURLToBlob(base64Path)
   const mimeType = blob.type || DEFAULT_MIME_TYPE
 
@@ -93,10 +78,7 @@ function convertBase64ToBlob(
  * @param {String} [fileName]
  * @param {String} [mimeType]
  */
-function saveAsBlob(
-  blob,
-  { fileName = DEFAULT_FILE_NAME, mimeType = DEFAULT_MIME_TYPE } = {}
-) {
+function saveAsBlob(blob, { fileName = DEFAULT_FILE_NAME, mimeType = DEFAULT_MIME_TYPE } = {}) {
   blob = blob instanceof Blob ? blob : new Blob([blob], { type: mimeType })
 
   // IE10+ : (has Blob, but not a[download] or URL)
@@ -155,4 +137,4 @@ function _save(url, { fileName = DEFAULT_FILE_NAME, windowMode = false } = {}) {
     .catch(printError)
 }
 
-export default download
+export default dwnld

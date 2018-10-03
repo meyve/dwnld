@@ -1,2 +1,314 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=0)}([function(e,t,n){"use strict";n.r(t);var r="application/octet-stream",o="file",i=/^data:([\w+-]+\/[\w+.-]+)?[,;]/,a=/(?:\.([^.]+))?$/,l=/^.*\/(.*)\.(.*)$/g;function u(e){throw console.error("Something went wrong while downloading:","\n",e.message,"\n",e.stack,"\n"),console.warn("Please, report issues to: https://github.com/meyve/dwnld"),console.warn("Have a nice day :)"),new Error(e.toString())}function c(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=[],r=!0,o=!1,i=void 0;try{for(var a,l=e[Symbol.iterator]();!(r=(a=l.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){o=!0,i=e}finally{try{r||null==l.return||l.return()}finally{if(o)throw i}}return n}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function d(e){e.stopPropagation()}function f(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=t.fileName,d=void 0===n?o:n,m=t.mimeType,p=void 0===m?r:m;try{return function(e){return new RegExp("^(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*(\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$","i").test(e)}(e)?function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=t.fileName,o=t.mimeType,i=void 0===o?r:o,u=c(l.exec(e),3),d=u[1],s=u[2].split("?")[0];n=function(e,t){return a.exec(e)[0]?e:"".concat(e,".").concat(t)}(n=n||d,s);var m=new XMLHttpRequest;return m.open("GET",e,!0),m.responseType="blob",m.onload=function(e){return f(e.target.response,{fileName:n,mimeType:i})},m.send()}(e,{fileName:d,mimeType:p}):i.test(e)?function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).fileName,n=void 0===t?o:t,i=function(e){for(var t=e.split(/[:;,]/),n=t[1],r=("base64"===t[2]?atob:decodeURIComponent)(t.pop()),o=r.length,i=new Uint8Array(o),a=0;a<o;++a)i[a]=r.charCodeAt(a);return new Blob([i],{type:n})}(e),a=i.type||r;return s(i,{fileName:n,mimeType:a})}(e,{fileName:d}):s(e,{fileName:d,mimeType:p})}catch(e){u(e)}}function s(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=t.fileName,i=void 0===n?o:n,a=t.mimeType;return e=e instanceof Blob?e:new Blob([e],{type:void 0===a?r:a}),navigator.msSaveBlob?navigator.msSaveBlob(e,i):URL?m(URL.createObjectURL(e),{fileName:i,windowMode:!0}):function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).fileName,n=void 0===t?o:t,r=new FileReader;return r.onload=function(e){m(e.target.result,{fileName:n})},r.readAsDataURL(e)}(e,{fileName:i})}function m(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=t.fileName,r=void 0===n?o:n,i=t.windowMode,a=void 0!==i&&i,l=document.createElement("a");return l.href=e,l.setAttribute("download",r),l.className="download_url",l.style.display="none",l.addEventListener("click",d),document.body.appendChild(l),Promise.resolve().then(function(){return l.click()}).then(function(){l.removeEventListener("click",d),document.body.removeChild(l)}).then(function(){return a&&URL&&URL.revokeObjectURL(l.href)}).catch(u)}var p=f;t.default=p}]);
+'use strict';
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+var DEFAULT_MIME_TYPE = 'application/octet-stream';
+var DEFAULT_FILE_NAME = 'file';
+var BASE64_REGEX = /^data:([\w+-]+\/[\w+.-]+)?[,;]/;
+var EXTENSION_REGEX = /(?:\.([^.]+))?$/;
+var PARSE_PATH_FOR_FILENAME_REGEX = /^.*\/(.*)\.(.*)$/g;
+
+/**
+ * https://stackoverflow.com/a/14582229/7446674
+ *
+ * @param {String} str
+ *
+ * @return {Boolean}
+ */
+
+function isURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+  '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|' + // domain name
+  '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+  '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+  '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+  '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+
+  return pattern.test(str);
+}
+/**
+ *
+ * @param {Error} e
+ */
+
+
+function printError(e) {
+  console.error('Something went wrong while downloading:', '\n', e.message, '\n', e.stack, '\n');
+  console.warn('Please, report issues to: https://github.com/meyve/dwnld');
+  console.warn('Have a nice day :)');
+  throw new Error(e.toString());
+}
+/**
+ *
+ * @param {String} dataURL
+ *
+ * @return {Blob}
+ */
+
+
+function dataURLToBlob(dataURL) {
+  var parts = dataURL.split(/[:;,]/);
+  var type = parts[1];
+  var decoder = parts[2] === 'base64' ? atob : decodeURIComponent;
+  var binaryData = decoder(parts.pop());
+  var length = binaryData.length;
+  var uint8Arr = new Uint8Array(length);
+
+  for (var i = 0; i < length; ++i) {
+    uint8Arr[i] = binaryData.charCodeAt(i);
+  }
+
+  return new Blob([uint8Arr], {
+    type: type
+  });
+}
+/**
+ *
+ * @param {String} fileName
+ * @param {String} extension
+ *
+ * @return {String}
+ */
+
+
+function setFileExtension(fileName, extension) {
+  // If filename has extension in it
+  if (EXTENSION_REGEX.exec(fileName)[0]) {
+    return fileName;
+  }
+
+  return "".concat(fileName, ".").concat(extension);
+}
+
+function stopPropagationHandler(e) {
+  e.stopPropagation();
+}
+/**
+ *
+ * @param {String|Blob} data
+ * @param {String} [fileName]
+ * @param {String} [mimeType]
+ *
+ */
+
+
+function dwnld(data) {
+  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref$fileName = _ref.fileName,
+      fileName = _ref$fileName === void 0 ? DEFAULT_FILE_NAME : _ref$fileName,
+      _ref$mimeType = _ref.mimeType,
+      mimeType = _ref$mimeType === void 0 ? DEFAULT_MIME_TYPE : _ref$mimeType;
+
+  try {
+    // If URL was passed - first download it.
+    // Then recursively call download again with response.
+    if (isURL(data)) {
+      return downloadFromURL(data, {
+        fileName: fileName,
+        mimeType: mimeType
+      });
+    } // If raw base64:dataURL was passed.
+
+
+    if (BASE64_REGEX.test(data)) {
+      return convertBase64ToBlob(data, {
+        fileName: fileName
+      });
+    }
+
+    return saveAsBlob(data, {
+      fileName: fileName,
+      mimeType: mimeType
+    });
+  } catch (e) {
+    printError(e);
+  }
+}
+/**
+ *
+ * @param {String} url
+ * @param {String} [fileName]
+ * @param {String} [mimeType]
+ */
+
+
+function downloadFromURL(url) {
+  var _ref2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      fileName = _ref2.fileName,
+      _ref2$mimeType = _ref2.mimeType,
+      mimeType = _ref2$mimeType === void 0 ? DEFAULT_MIME_TYPE : _ref2$mimeType;
+
+  var _PARSE_PATH_FOR_FILEN = PARSE_PATH_FOR_FILENAME_REGEX.exec(url),
+      _PARSE_PATH_FOR_FILEN2 = _slicedToArray(_PARSE_PATH_FOR_FILEN, 3),
+      fileNameFromPath = _PARSE_PATH_FOR_FILEN2[1],
+      extensionWithQueryParams = _PARSE_PATH_FOR_FILEN2[2];
+
+  var extension = extensionWithQueryParams.split('?')[0];
+  fileName = fileName || fileNameFromPath;
+  fileName = setFileExtension(fileName, extension);
+  var ajax = new XMLHttpRequest();
+  ajax.open('GET', url, true);
+  ajax.responseType = 'blob';
+
+  ajax.onload = function (e) {
+    var response = e.target.response;
+    return download(response, {
+      fileName: fileName,
+      mimeType: mimeType
+    });
+  };
+
+  return ajax.send();
+}
+/**
+ *
+ * @param {String} base64Path
+ * @param {String} [fileName]
+ *
+ * @return {*}
+ */
+
+
+function convertBase64ToBlob(base64Path) {
+  var _ref3 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref3$fileName = _ref3.fileName,
+      fileName = _ref3$fileName === void 0 ? DEFAULT_FILE_NAME : _ref3$fileName;
+
+  var blob = dataURLToBlob(base64Path);
+  var mimeType = blob.type || DEFAULT_MIME_TYPE;
+  return saveAsBlob(blob, {
+    fileName: fileName,
+    mimeType: mimeType
+  });
+}
+/**
+ *
+ * @param {Blob|String} blob
+ * @param {String} [fileName]
+ * @param {String} [mimeType]
+ */
+
+
+function saveAsBlob(blob) {
+  var _ref4 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref4$fileName = _ref4.fileName,
+      fileName = _ref4$fileName === void 0 ? DEFAULT_FILE_NAME : _ref4$fileName,
+      _ref4$mimeType = _ref4.mimeType,
+      mimeType = _ref4$mimeType === void 0 ? DEFAULT_MIME_TYPE : _ref4$mimeType;
+
+  blob = blob instanceof Blob ? blob : new Blob([blob], {
+    type: mimeType
+  }); // IE10+ : (has Blob, but not a[download] or URL)
+
+  if (navigator.msSaveBlob) {
+    return navigator.msSaveBlob(blob, fileName);
+  } // If browser has Blob and URL.
+
+
+  if (URL) {
+    return _save(URL.createObjectURL(blob), {
+      fileName: fileName,
+      windowMode: true
+    });
+  } // Rest old browsers should try to use reader.
+
+
+  return _saveWithReader(blob, {
+    fileName: fileName
+  });
+}
+/**
+ *
+ * @param {Blob} blob
+ * @param {String} [fileName]
+ */
+
+
+function _saveWithReader(blob) {
+  var _ref5 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref5$fileName = _ref5.fileName,
+      fileName = _ref5$fileName === void 0 ? DEFAULT_FILE_NAME : _ref5$fileName;
+
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    _save(e.target.result, {
+      fileName: fileName
+    });
+  };
+
+  return reader.readAsDataURL(blob);
+}
+/**
+ * @private
+ *
+ * @param {String} url
+ * @param {String} fileName
+ * @param {Boolean} windowMode
+ *
+ */
+
+
+function _save(url) {
+  var _ref6 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+      _ref6$fileName = _ref6.fileName,
+      fileName = _ref6$fileName === void 0 ? DEFAULT_FILE_NAME : _ref6$fileName,
+      _ref6$windowMode = _ref6.windowMode,
+      windowMode = _ref6$windowMode === void 0 ? false : _ref6$windowMode;
+
+  var anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.setAttribute('download', fileName);
+  anchor.className = 'download_url';
+  anchor.style.display = 'none';
+  anchor.addEventListener('click', stopPropagationHandler); //fix for IE
+
+  document.body.appendChild(anchor);
+  return Promise.resolve().then(function () {
+    return anchor.click();
+  }).then(function () {
+    anchor.removeEventListener('click', stopPropagationHandler);
+    document.body.removeChild(anchor);
+  }).then(function () {
+    return windowMode && URL && URL.revokeObjectURL(anchor.href);
+  }).catch(printError);
+}
+
+module.exports = dwnld;
 //# sourceMappingURL=index.js.map
