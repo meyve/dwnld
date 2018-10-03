@@ -1,0 +1,121 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["import"],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/ignore": ["node_modules"],
+    "import/extensions": [".js"]
+  },
+  "rules": {
+    // require function declarations instead of expressions
+    "func-style": [
+      "warn",
+      "declaration",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    // require let or const instead of var
+    "no-var": "warn",
+    "no-unused-vars": "warn",
+    "no-debugger": "error",
+    "no-alert": "warn",
+    "max-len": ["warn", 140],
+    // require or disallow use of semicolons instead of ASI
+    "semi": ["warn", "never"],
+    // require the use of === and !== except null comparison
+    "eqeqeq": ["warn", "smart"],
+    // disallow use of eval()
+    "no-eval": "warn",
+    // disallow use of eval()-like methods
+    "no-implied-eval": "warn",
+    // disallow adding to native types
+    "no-extend-native": "warn",
+    // disallow creation of functions within loops
+    "no-loop-func": "warn",
+    // disallow magic numbers
+    // http://eslint.org/docs/rules/no-magic-numbers
+    "no-magic-numbers": [
+      "off",
+      {
+        "ignore": [],
+        "ignoreArrayIndexes": true,
+        "enforceConst": true,
+        "detectObjects": false
+      }
+    ],
+    // disallows creating new instances of String, Number, and Boolean
+    "no-new-wrappers": "warn",
+    // https://eslint.org/docs/rules/space-before-blocks
+    "space-before-blocks": "warn",
+    // https://eslint.org/docs/rules/keyword-spacing
+    "keyword-spacing": "warn",
+    // https://eslint.org/docs/rules/key-spacing
+    "key-spacing": [
+      "warn",
+      {
+        "align": "colon"
+      }
+    ],
+    // https://eslint.org/docs/rules/space-infix-ops
+    "space-infix-ops": "warn",
+    // specify whether double or single quotes should be used
+    "quotes": ["warn", "single", "avoid-escape"],
+    // disallow else after a return in an if
+    // https://eslint.org/docs/rules/no-else-return
+    "no-else-return": [
+      "warn",
+      {
+        "allowElseIf": false
+      }
+    ],
+    // require space before/after dependencies function"s dependencies
+    "arrow-spacing": [
+      "warn",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    // Require Following Curly Brace Conventions (curly)
+    // https://github.com/eslint/eslint/blob/master/docs/rules/curly.md
+    "curly": ["warn"],
+    // require an empty line before return|export statements
+    // https://eslint.org/docs/rules/newline-before-return
+    "padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "export"
+      }
+    ],
+    "arrow-parens": ["warn", "as-needed"],
+    // suggest using of const declaration for variables that are never modified after declared
+    "prefer-const": "warn",
+    // restrict what can be thrown as an exception
+    "no-throw-literal": "warn",
+    // disallow Unused Expressions
+    "no-unused-expressions": [
+      "warn",
+      {
+        "allowShortCircuit": true
+      }
+    ],
+    // require padding inside curly braces
+    "object-curly-spacing": ["warn", "always"]
+  }
+}

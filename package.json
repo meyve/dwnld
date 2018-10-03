@@ -1,39 +1,40 @@
 {
-  "name": "downloadjs",
-  "main": "download.js",
-  "version": "1.4.8",
-  "description": "file downloading using client-side javascript",
-  "keywords": [
-    "files",
-    "dataURL",
-    "blob",
-    "download"
-  ],
-  "homepage": "http://danml.com/download.html",
+  "name": "dwnld",
+  "main": "dist/index.js",
+  "version": "0.0.1",
+  "description": "Client-side file download library.",
+  "keywords": ["files", "dataURL", "blob", "download", "client", "side"],
   "license": "MIT",
   "author": {
-    "name": "dandavis",
-    "email": "rndme@users.noreply.github.com",
-    "url": "http://danml.com/"
+    "name": "_meyve",
+    "email": "ouzkhanmete@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rndme/download.git"
+    "url": "https://github.com/meyve/dwnld.git"
   },
-  "bugs": {
-    "email": "rndme@users.noreply.github.com"
-  },
-  "files": [
-    "download.js",
-    "download.min.js"
-  ],
-  "npmName": "downloadjs",
+  "npmName": "dwnld",
   "npmFileMap": [
     {
       "basePath": "/",
-      "files": [
-        "*.js"
-      ]
+      "files": ["*.js"]
     }
-  ]
+  ],
+
+  "scripts": {
+    "lint": "eslint src --fix",
+    "build": "webpack ./src/index.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.1",
+    "@babel/preset-env": "^g7.0.0",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^8.0.2",
+    "eslint": "^5.6.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "progress-bar-webpack-plugin": "^1.11.0",
+    "webpack": "^4.19.0",
+    "webpack-cli": "^3.1.0"
+  }
 }
