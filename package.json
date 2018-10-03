@@ -1,7 +1,7 @@
 {
   "name": "dwnld",
   "main": "dist/index.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Client-side file download library.",
   "keywords": ["files", "dataURL", "blob", "download", "client", "side"],
   "license": "MIT",
