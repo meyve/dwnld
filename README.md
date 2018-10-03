@@ -10,40 +10,31 @@
 
 ## Summary
 
----
-
 The dwnld() package is used to download files on client side with JavaScript.
 
-## Getting and Using
 
----
+### Installation via npm
 
-### Via NPM/Bower
+```npm install dwnld```
 
-`npm install dwnld` <br />
-`bower install dwnld`
-
-`require("dwnld")(data, {fileName, mimeType});`
 
 ### Included via AMD
 
+```javascript
     require(['path/to/file'], function(dwnld) {
         dwnld(data, {fileName, mimeType);
     });
+```
 
-### Parameters
 
----
+#### Parameters
 
 - **data** - The Blob, File, String, or dataURL containing the soon-to-be File's contents.
 - **[strFileName]** - The name of the file to be created. This param is optional. You can specify file's extension in its name if you want or dwnld will do the thing for you.
 - **[strMimeType]** - The MIME content-type of the file to download. This param is optional.
 
-## Example Usage
 
----
-
-### Usage with simple link
+#### Usage with simple link
 
 ```javascript
 import dwnld from "dwnld"
@@ -73,7 +64,7 @@ const someBlob = new Blob(["some blob"])
 dwnld(someBlob, { fileName: "fileNameToSave.txt" })
 ```
 
-#### Usage with UInt8 Array - [live demo](http://pagedemos.com/zuyk46wbkktq/output/)
+#### Usage with UInt8 Array
 
 ```javascript
 import dwnld from "dwnld"
@@ -85,8 +76,11 @@ dwnld(array, { fileName: "fileNameToSave.txt" })
 ```
 
 #### Usage with files
+```javascript
+import dwnld from "dwnld"
 
-    dwnld("/somefile.png");
+dwnld("/somefile.png");
+```
 
 [mit license]: http://opensource.org/licenses/MIT
 [license-image]: https://img.shields.io/badge/license-MIT-green.svg
