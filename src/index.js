@@ -1,3 +1,3 @@
-import download from "./dwnld"
+import download from './dwnld'
 
 export default download

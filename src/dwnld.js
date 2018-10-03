@@ -3,8 +3,8 @@ import {
   DEFAULT_FILE_NAME,
   BASE64_REGEX,
   PARSE_PATH_FOR_FILENAME_REGEX
-} from "./constants"
-import { printError, isURL, dataURLToBlob, setFileExtension } from "./utils"
+} from './constants'
+import { printError, isURL, dataURLToBlob, setFileExtension } from './utils'
 
 function stopPropagationHandler(e) {
   e.stopPropagation()
@@ -52,15 +52,15 @@ function downloadFromURL(url, { fileName, mimeType = DEFAULT_MIME_TYPE } = {}) {
     extensionWithQueryParams
   ] = PARSE_PATH_FOR_FILENAME_REGEX.exec(url)
 
-  const extension = extensionWithQueryParams.split("?")[0]
+  const extension = extensionWithQueryParams.split('?')[0]
 
   fileName = fileName || fileNameFromPath
   fileName = setFileExtension(fileName, extension)
 
   const ajax = new XMLHttpRequest()
 
-  ajax.open("GET", url, true)
-  ajax.responseType = "blob"
+  ajax.open('GET', url, true)
+  ajax.responseType = 'blob'
   ajax.onload = function(e) {
     const { response } = e.target
 
@@ -136,19 +136,19 @@ function _saveWithReader(blob, { fileName = DEFAULT_FILE_NAME } = {}) {
  *
  */
 function _save(url, { fileName = DEFAULT_FILE_NAME, windowMode = false } = {}) {
-  const anchor = document.createElement("a")
+  const anchor = document.createElement('a')
 
   anchor.href = url
-  anchor.setAttribute("download", fileName)
-  anchor.className = "download_url"
-  anchor.style.display = "none"
-  anchor.addEventListener("click", stopPropagationHandler) //fix for IE
+  anchor.setAttribute('download', fileName)
+  anchor.className = 'download_url'
+  anchor.style.display = 'none'
+  anchor.addEventListener('click', stopPropagationHandler) //fix for IE
   document.body.appendChild(anchor)
 
   return Promise.resolve()
     .then(() => anchor.click())
     .then(() => {
-      anchor.removeEventListener("click", stopPropagationHandler)
+      anchor.removeEventListener('click', stopPropagationHandler)
       document.body.removeChild(anchor)
     })
     .then(() => windowMode && URL && URL.revokeObjectURL(anchor.href))
